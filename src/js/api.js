@@ -3,8 +3,8 @@ let apiKey = "ec136557";
 let request = new XMLHttpRequest();
 
 
-function apiRequest(reqParam){ //?i=tt3896198
-    requestURL = "https://www.omdbapi.com/" + reqParam + "&apikey=" + apiKey + "";
+function apiRequest(reqParam){
+    requestURL = "https://www.omdbapi.com/" + reqParam + "&type=movie&apikey=" + apiKey + "";
     request.open("GET", requestURL);
     request.send();
     request.onload = () =>{

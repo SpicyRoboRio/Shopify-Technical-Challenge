@@ -11,10 +11,16 @@
 <body>
     <script>
         let movieTitle = "The Avengers";
-        movieJSON = JSON.parse(apiRequest("?t=" + movieTitle));
+        let movieJSON = apiRequest("?t=" + movieTitle);
+        if(movieJSON != "ERROR"){
+            console.log(movieJSON.Title);
+            console.log(movieJSON.year);
+        }
+        else{
+            console.log("ERROR GETTING DATA")
+        }
 
-        console.log(movieJSON.Title);
-        console.log(movieJSON.year);
+        
     </script>
 </body>
 </html>

@@ -11,7 +11,10 @@
 <body>
     <script>
         let movieTitle = "The Avengers";
-        apiRequest("?t=" + movieTitle);
+        movieJSON = JSON.parse(apiRequest("?t=" + movieTitle));
+
+        console.log(movieJSON.Title);
+        console.log(movieJSON.year);
     </script>
 </body>
 </html>

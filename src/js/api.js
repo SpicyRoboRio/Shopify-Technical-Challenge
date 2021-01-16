@@ -10,7 +10,7 @@ function apiRequest(reqParam){
     request.onload = () =>{
         console.log(request);
         if(request.status === 200){
-            console.log(JSON.parse(request.response));
+            return request.response;
         }
     }
 } 

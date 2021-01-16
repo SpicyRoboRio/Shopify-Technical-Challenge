@@ -4,7 +4,7 @@ let request = new XMLHttpRequest();
 
 
 function apiRequest(reqParam){ //?i=tt3896198
-    requestURL = "http://www.omdbapi.com/" + reqParam + "&apikey=" + apiKey + "";
+    requestURL = "https://www.omdbapi.com/" + reqParam + "&apikey=" + apiKey + "";
     request.open("GET", requestURL);
     request.send();
     request.onload = () =>{

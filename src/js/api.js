@@ -116,7 +116,7 @@ function displayNominatedMovie(movieJSON){
 
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         for(i = 0; i < nomList.length; i++){ 
-            if(nomList[i] == movieID){ 
+            if(nomList[i]["imdbID"] == movieID){ 
                 nomList.splice(i, 1); 
             }
         }

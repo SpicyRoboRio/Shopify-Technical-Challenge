@@ -13,9 +13,6 @@ function apiRequest(reqParam, handleData){
         url: requestURL,
         dataType: "json",
         success: function (data) {
-            console.log("RESPONSE:");
-            console.log(data);
-
             handleData(data);
         },
         fail: function(error) {

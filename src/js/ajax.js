@@ -16,9 +16,10 @@ $(document).ready(function() {
     else{
         nomList = {};
     }
-    
-    $('#searchParam').oninput = function(){
+
+    $('#searchParam').on("input", function(e){
         let movieAttr = $('input[name="searchparam"]').val();
+        console.log(movieAttr);
 
         $('#searchResults').html("");
 
@@ -29,5 +30,6 @@ $(document).ready(function() {
             searchMovieByTitle(movieAttr);   
         }
         
-    };
+    });
+
 });

@@ -1,10 +1,11 @@
 $(document).ready(function() {
-    let nomList = JSON.parse(getCookie(myCookie));
+    nomList = JSON.parse(getCookie(myCookie));
     if(nomList !== undefined){
         console.log(nomList);
 
         for(movie in nomList){
-            displayNominatedMovie(movie);
+            displayNominatedMovie(nomList[movie]);
+            console.log(nomList[movie]);
         }
     }
     

@@ -12,7 +12,7 @@ function apiRequest(reqParam, handleData){
         dataType: "json",
         success: function (data) {
             console.log("RESPONSE:");
-            console.log(request.response);
+            console.log(data);
 
             handleData(data);
         },

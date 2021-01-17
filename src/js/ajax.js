@@ -3,7 +3,7 @@ $(document).ready(function() {
     
     setInterval(function() {
         setCookie(myCookie, nomList, 7);
-    }, 5000);
+    }, 100);
 
     if(nomList !== undefined && nomList !== null){
         console.log(nomList);

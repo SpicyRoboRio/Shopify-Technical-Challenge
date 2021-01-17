@@ -108,6 +108,7 @@ function getNominatedMovie(reqResults){
     if(reqResults["Response"] != "False"){
         nomList[reqResults["imdbID"]] = reqResults;
         displayNominatedMovie(reqResults);
+        eraseCookie(myCookie);
         setCookie(myCookie, nomList, 7);
     }
     else if(reqResults["Response"] == "False"){

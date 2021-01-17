@@ -72,10 +72,8 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
     else{
         let searchResCont = "<form id='nominateForm' ref='nominateForm'>\
                                 <div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
-                                    <span>" + movieTitle + ",<i>(" + movieYear + ")</i></span>\
-                                    <div class='form-group'>\
-                                        <input id='nominateBtn" + imdbID + "' type='button' value='Nominate'>\
-                                    </div>\
+                                    <span>" + movieTitle + ", <i>(" + movieYear + ")</i></span>\
+                                    <input id='nominateBtn" + imdbID + "' type='button' value='Nominate'>\
                                 </div>\
                             </form><br>";
 

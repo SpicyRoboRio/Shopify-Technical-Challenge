@@ -1,0 +1,12 @@
+body{
+    background-color: #b1b1b1;
+}
+#searchResults { 
+    float:left;  
+} 
+#nominationList{ 
+    float:right;  
+} 
+span{
+    padding: 10px;
+}

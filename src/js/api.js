@@ -4,13 +4,15 @@ let request = new XMLHttpRequest();
 
 
 function apiRequest(reqParam){
-    requestURL = "https://www.omdbapi.com/" + reqParam + "&type=movie&apikey=" + apiKey + "";
+    let requestURL = "https://www.omdbapi.com/" + reqParam + "&type=movie&apikey=" + apiKey;
     request.open("GET", requestURL);
     request.send();
     request.onload = () =>{
         console.log(request);
         if(request.status === 200){
-            return JSON.parse(request.response);
+            let reqJSON = JSON.parse(request.response);
+            console.log(reqJSON);
+            return reqJSON;
         }
         else{
             return "ERROR";

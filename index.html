@@ -12,12 +12,14 @@
     <script>
         let movieTitle = "The Avengers";
         let movieJSON = apiRequest("?t=" + movieTitle);
-        if(movieJSON != "ERROR"){
-            console.log(movieJSON.Title);
-            console.log(movieJSON.year);
+        console.log(movieJSON);
+        
+        if(movieJSON === "ERROR"){
+            console.log("ERROR GETTING DATA")
         }
         else{
-            console.log("ERROR GETTING DATA")
+            console.log(movieJSON.Title);
+            console.log(movieJSON.year);
         }
 
         

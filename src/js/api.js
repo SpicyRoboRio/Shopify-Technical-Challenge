@@ -24,7 +24,12 @@ function apiRequest(reqParam, handleData){
 
 //Search OMDB for movies by title
 function searchMovieByTitle(movieTitle){
-    apiRequest("?t=" + movieTitle, handleAPIData);
+    apiRequest("?s=" + movieTitle, handleAPIData);
+}
+
+//Search OMDB for movies by ID
+function searchMovieByID(movieID){
+    apiRequest("?i=" + movieID, handleAPIData);
 }
 
 // handle data retrieved from OMDB DB and display movie title and name(API Request Callback)
@@ -33,8 +38,17 @@ function handleAPIData(reqResults){
     console.log(reqResults);
 
     if(reqResults["Response"] != "False"){
-        console.log(reqResults["Title"]);
-        console.log(reqResults["Year"]);
+        if(reqResults["Search"] !== undefined){
+            
+            for(i = 0; i < reqResults["Search"].length; i++){
+                currResult = reqResults["Search"][i];
+                addSearchResult(currResult["Title"], currResult["Year"], i);
+            }
+        
+        }
+        else{
+            addSearchResult(reqResults["Title"], reqResults["Year"], 0);
+        }
     }
     else if(reqResults["Response"] != "False"){
         console.log(reqResults["Error"]);
@@ -42,4 +56,16 @@ function handleAPIData(reqResults){
     else{
         console.log("Error Getting Data");
     }
+}
+
+function addSearchResult(movieTitle, movieYear, num){
+    let searchResCont = "<div id='movie'" + num + ">\
+                            <p id='movieTitle'>" + movieTitle + "</p>\
+                            <br>\
+                            <p id='movieYear'>" + movieYear + "</p>\
+                            <br>\
+                            <input id='nominateBtn' type='button' value='Nominate'>\
+                        </div>";
+
+    $('#searchResults').append(searchResCont);
 }

@@ -21,18 +21,12 @@
     <!-- Custom CSS End -->
 </head>
 <body>
-    <script>   
-        let movieTitle = "The Avengers";
-        searchMovieByTitle(movieTitle);   
-    </script>
-
     <div>
         <div>
             <form id="searchForm" ref='searchForm'>
-                <input type="text" id="searchParam" name="name" placeholder="Search by ID/Title">
-                <input id="searchBtn" type='button' value="Search">
+                <div  class="form-group"></div>
+                    <input type="text" id="searchParam" name="name" placeholder="Search by ID/Title">
                 
-                <div  class="form-group">
                     <input id="searchBtn" type='submit' value="Search">
                 </div>
             </form>
@@ -41,12 +35,7 @@
             
         <hr>
 
-        <div>
-            <p id="movieTitle">Movie Title</p>
-            <br>
-            <p id="movieYear">Release Year</p>
-            <br>
-            <input id="nominateBtn" type='button' value="Nominate">
+        <div id="searchResults">
         </div>
         
     </div>

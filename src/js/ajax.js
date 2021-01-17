@@ -1,8 +1,15 @@
 $(document).ready(function() {
     $('#searchForm').submit(function(e){
         e.preventDefault();
-        let movieAttr = document.getElementById("searchParam").getAttribute("value");
+        let arr = $('#searchForm').serializeArray();
+        let movieAttr = arr[0].value;
 
-        searchMovieByTitle(movieTitle);   
+        if(movieAttr.substring(0, 2) == "tt"){
+            searchMovieByID(movieAttr);  
+        }
+        else{
+            searchMovieByTitle(movieAttr);   
+        }
+        
     });
 });

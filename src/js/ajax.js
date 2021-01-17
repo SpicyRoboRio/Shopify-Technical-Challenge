@@ -17,10 +17,8 @@ $(document).ready(function() {
         nomList = {};
     }
     
-    $('#searchParam').onchange = function(){
-        e.preventDefault();
-        let arr = $('#searchForm').serializeArray();
-        let movieAttr = arr[0].value;
+    $('#searchParam').oninput = function(){
+        let movieAttr = $('input[name="searchparam"]').val();
 
         $('#searchResults').html("");
 

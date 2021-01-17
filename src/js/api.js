@@ -66,7 +66,7 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
                             <div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
                                 <span>" + movieTitle + ",<i>(" + movieYear + ")</i></span>\
                             </div>\
-                        </form><br>";
+                        </form>";
         $('#searchResults').append(searchResCont);
     }
     else{
@@ -75,7 +75,7 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
                                     <span>" + movieTitle + ", <i>(" + movieYear + ")</i></span>\
                                     <input id='nominateBtn" + imdbID + "' type='button' value='Nominate'>\
                                 </div>\
-                            </form><br>";
+                            </form>";
 
         $('#searchResults').append(searchResCont);
 
@@ -122,7 +122,6 @@ function displayNominatedMovie(movieJSON){
     let nomListcont = "<div id='" + movieJSON["imdbID"] + "'>\
                             <span>" + movieJSON["Title"] + ",<i>(" + movieJSON["Year"] + ")</i></span>\
                             <input id='denominateBtn" + movieJSON["imdbID"] + "' type='button' value='Remove'>\
-                            <br>\
                         </div>";
 
     $('#nominationList').append(nomListcont);

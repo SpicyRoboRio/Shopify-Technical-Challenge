@@ -10,3 +10,10 @@ body{
 span{
     padding: 10px;
 }
+#searchParam{
+    width: 500px;
+}
+.mainDivs{
+    background-color: #696969;
+    padding: 5px;
+}

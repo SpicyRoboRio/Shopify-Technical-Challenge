@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let nomList = getCookie(myCookie);
+    let nomList = JSON.parse(getCookie(myCookie));
     if(nomList !== undefined){
         console.log(nomList);
 

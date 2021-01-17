@@ -63,8 +63,7 @@ function displaySearchData(reqResults){
 function addSearchResult(movieTitle, movieYear, imdbID, num){
     let searchResCont = "<form id='nominateForm' ref='nominateForm'>\
                             <div id='movie" + num + "' imdbID='" + imdbID + "'>\
-                                <p id='movieTitle'>" + movieTitle + "</p>\
-                                <p id='movieYear'>" + movieYear + "</p>\
+                                <span>" + movieTitle + ",<i>(" + movieYear + ")</i></span>\
                                 <div  class='form-group'></div>\
                                     <input id='nominateBtn" + num + "' type='button' value='Nominate'>\
                                 </div>\
@@ -106,11 +105,10 @@ function getNominatedMovie(reqResults){
 
 function displayNominatedMovie(movieJSON){
     let nomListcont = "<div id='" + movieJSON["imdbID"] + "'>\
-                            <p id='movieTitle'>" + movieJSON["Title"] + "</p>\
-                            <p id='movieYear'>" + movieJSON["Year"] + "</p>\
+                            <span>" + movieJSON["Title"] + ",<i>(" + movieJSON["Year"] + ")</i></span>\
                             <input id='denominateBtn" + movieJSON["imdbID"] + "' type='button' value='Remove'>\
-                        </div>\
-                        <br>";
+                            <br>\
+                        </div>";
 
     $('#nominationList').append(nomListcont);
 

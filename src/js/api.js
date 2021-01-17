@@ -108,7 +108,6 @@ function getNominatedMovie(reqResults){
     if(reqResults["Response"] != "False"){
         nomList[reqResults["imdbID"]] = reqResults;
         displayNominatedMovie(reqResults);
-        eraseCookie(myCookie);
         setCookie(myCookie, nomList, 7);
     }
     else if(reqResults["Response"] == "False"){
@@ -131,6 +130,7 @@ function displayNominatedMovie(movieJSON){
 
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         delete nomList[movieJSON["imdbID"]];
+        setCookie(myCookie, nomList, 7);
         document.getElementById(movieID).remove();
     };
 }

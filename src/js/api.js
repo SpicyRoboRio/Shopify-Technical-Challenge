@@ -61,15 +61,22 @@ function displaySearchData(reqResults){
 }
 
 function addSearchResult(movieTitle, movieYear, imdbID, num){
+    let nomBtnCont = "";
+    if(!isNominated(imdbID)){
+        nomBtnCont = "<div  class='form-group'></div>\
+                            <input id='nominateBtn" + num + "' type='button' value='Nominate'>\
+                        </div>";
+    }
+
     let searchResCont = "<form id='nominateForm' ref='nominateForm'>\
                             <div id='movie" + num + "' imdbID='" + imdbID + "'>\
                                 <span>" + movieTitle + ",<i>(" + movieYear + ")</i></span>\
-                                <div  class='form-group'></div>\
-                                    <input id='nominateBtn" + num + "' type='button' value='Nominate'>\
-                                </div>\
+                                " + nomBtnCont + "\
                             </div>\
                         </form><br>";
 
+    
+    
     $('#searchResults').append(searchResCont);
     document.getElementById("nominateBtn" + num).onclick = function(m, movieID=imdbID){
         if(nomList.length >= 5){
@@ -82,7 +89,12 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
 }
 
 function addNomination(movieID){
-    apiRequest("?i=" + movieID, getNominatedMovie);
+    if(!isNominated(movieID)){
+        apiRequest("?i=" + movieID, getNominatedMovie);
+    }
+    else{
+        alert("This movie has already been nominated");
+    }
 }
 
 function getNominatedMovie(reqResults){
@@ -120,4 +132,15 @@ function displayNominatedMovie(movieJSON){
         }
         document.getElementById(movieID).remove();
     };
+}
+
+function isNominated(movieID){
+    console.log("ISNOM?");
+    for(i = 0; i < nomList.length; i++){ 
+        console.log("INLOOp");
+        if(nomList[i]["imdbID"] == movieID){ 
+            return true;
+        }
+    }
+    return false;
 }

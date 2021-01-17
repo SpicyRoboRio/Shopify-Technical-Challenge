@@ -22,6 +22,7 @@ $(document).ready(function() {
         console.log(movieAttr);
 
         $('#searchResults').html("");
+        pageNum = 1;
 
         if($('input[name="searchparam"]').val() !== ""){    
             if(movieAttr.substring(0, 2) == "tt"){

@@ -3,6 +3,9 @@ let apiKey = "ec136557";
 let request = new XMLHttpRequest();
 let nomList = {};
 let myCookie = "spicyroborio_nom_list";
+let pageNum = 1;
+let maxPages = 1;
+let resPerPage = 10; //max number of results shown on a search page (default = 10)
 
 //Send APIRequest to retrieve movie data
 function apiRequest(reqParam, handleData){
@@ -23,7 +26,7 @@ function apiRequest(reqParam, handleData){
 
 //Search OMDB for movies by title
 function searchMovieByTitle(movieTitle){
-    apiRequest("?s=" + movieTitle, displaySearchData);
+    apiRequest("?s=" + movieTitle + "&page=" + pageNum, displaySearchData);
 }
 
 //Search OMDB for movies by ID
@@ -38,11 +41,11 @@ function displaySearchData(reqResults){
 
     if(reqResults["Response"] != "False"){
         if(reqResults["Search"] !== undefined){
+            maxPages = Math.ceil(parseInt(reqResults["totalResults"], 10)/resPerPage);
             for(i = 0; i < reqResults["Search"].length; i++){
                 currResult = reqResults["Search"][i];
                 addSearchResult(currResult["Title"], currResult["Year"], currResult["imdbID"], i);
             }
-        
         }
         else{
             addSearchResult(reqResults["Title"], reqResults["Year"], reqResults["imdbID"], 0);
@@ -82,6 +85,19 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
                 document.getElementById("nominateBtn" + movieID).remove();
             }
         };
+    }
+
+    //pagination if there are more than 1 page
+    if(maxPages > 1){
+        if(pageNum > 1){
+            searchResCont = "<input id='prevBtn' type='button' value='Prev Page'></input>";
+        }
+        searchResCont += "<span id='pageNum'>Page " + pageNum + " of " + maxPages + "</span>"
+        if(pageNum < maxPages){
+            searchResCont += "<input id='nextBtn' type='button' value='Next Page'></input>";
+        }
+
+        $('#searchResults').append(searchResCont);
     }
 }
 
@@ -158,4 +174,20 @@ function getCookie(name) {
 }
 function eraseCookie(name) {   
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+function nextPage(){
+    pageNum--;
+    let movieTitle = $('input[name="searchparam"]').val();
+
+    $('#searchResults').html("");
+    searchMovieByTitle(movieTitle);
+}
+
+function nextPage(){
+    pageNum++;
+    let movieTitle = $('input[name="searchparam"]').val();
+
+    $('#searchResults').html("");
+    searchMovieByTitle(movieTitle);
 }

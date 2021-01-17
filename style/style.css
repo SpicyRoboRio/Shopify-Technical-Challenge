@@ -21,3 +21,12 @@ span{
     padding: 5px;
     margin: 20px;
 }
+#prevBtn{
+    float:left;  
+}
+#nextBtn{
+    float:right;  
+}
+#pageNum{
+    text-align: center;
+}

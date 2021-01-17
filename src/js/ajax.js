@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    let nomList = getCookie(myCookie);
+    if(nomList !== undefined){
+        console.log(nomList);
+
+        for(movie in nomList){
+            displayNominatedMovie(movie);
+        }
+    }
+    
     $('#searchForm').submit(function(e){
         e.preventDefault();
         let arr = $('#searchForm').serializeArray();

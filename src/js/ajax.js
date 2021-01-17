@@ -4,6 +4,8 @@ $(document).ready(function() {
         let arr = $('#searchForm').serializeArray();
         let movieAttr = arr[0].value;
 
+        $('#searchResults').html("");
+
         if(movieAttr.substring(0, 2) == "tt"){
             searchMovieByID(movieAttr);  
         }

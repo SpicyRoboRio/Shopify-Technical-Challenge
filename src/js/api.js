@@ -39,7 +39,6 @@ function handleAPIData(reqResults){
 
     if(reqResults["Response"] != "False"){
         if(reqResults["Search"] !== undefined){
-            
             for(i = 0; i < reqResults["Search"].length; i++){
                 currResult = reqResults["Search"][i];
                 addSearchResult(currResult["Title"], currResult["Year"], i);
@@ -50,11 +49,13 @@ function handleAPIData(reqResults){
             addSearchResult(reqResults["Title"], reqResults["Year"], 0);
         }
     }
-    else if(reqResults["Response"] != "False"){
+    else if(reqResults["Response"] == "False"){
         console.log(reqResults["Error"]);
+        $('#searchResults').html(reqResults["Error"]);
     }
     else{
         console.log("Error Getting Data");
+        $('#searchResults').html("Error Getting Data");
     }
 }
 

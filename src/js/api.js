@@ -60,20 +60,16 @@ function displaySearchData(reqResults){
 
 function addSearchResult(movieTitle, movieYear, imdbID, num){
     if(isNominated(imdbID)){
-        let searchResCont = "<form id='nominateForm' ref='nominateForm'>\
-                            <div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
+        let searchResCont = "<div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
                                 <span>" + movieTitle + ",<i>(" + movieYear + ")</i></span>\
-                            </div>\
-                        </form>";
+                            </div>";
         $('#searchResults').append(searchResCont);
     }
     else{
-        let searchResCont = "<form id='nominateForm' ref='nominateForm'>\
-                                <div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
-                                    <span>" + movieTitle + ", <i>(" + movieYear + ")</i></span>\
-                                    <input id='nominateBtn" + imdbID + "' type='button' value='Nominate'>\
-                                </div>\
-                            </form>";
+        let searchResCont = "<div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
+                                <span>" + movieTitle + ", <i>(" + movieYear + ")</i></span>\
+                                <input id='nominateBtn" + imdbID + "' type='button' value='Nominate'>\
+                            </div>";
 
         $('#searchResults').append(searchResCont);
 

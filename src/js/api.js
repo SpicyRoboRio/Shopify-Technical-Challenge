@@ -1,7 +1,7 @@
 let apiKey = "ec136557";
 
 let request = new XMLHttpRequest();
-let nomList = [];
+let nomList = {};
 
 //Send APIRequest to retrieve movie data
 function apiRequest(reqParam, handleData){
@@ -81,12 +81,13 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
 
         $('#searchResults').append(searchResCont);
 
-        document.getElementById("nominateBtn" + num).onclick = function(m, movieID=imdbID){
-            if(nomList.length >= 5){
+        document.getElementById("nominateBtn" + imdbID).onclick = function(m, movieID=imdbID){
+            if(Object.keys(nomList).length >= 5){
                 alert("Max of 5 Nominations!");
             }
             else{
                 addNomination(movieID);
+                document.getElementById("nominateBtn" + num).remove();
             }
         };
     }
@@ -106,7 +107,7 @@ function getNominatedMovie(reqResults){
     console.log(reqResults);
 
     if(reqResults["Response"] != "False"){
-        nomList.push(reqResults);
+        nomList[reqResults["imdbID"]] = reqResults;
         displayNominatedMovie(reqResults);
     }
     else if(reqResults["Response"] == "False"){
@@ -129,20 +130,13 @@ function displayNominatedMovie(movieJSON){
     $('#nominationList').append(nomListcont);
 
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
-        for(i = 0; i < nomList.length; i++){ 
-            if(nomList[i]["imdbID"] == movieID){ 
-                nomList.splice(i, 1); 
-            }
-        }
+        delete nomList[movieJSON["imdbID"]];
         document.getElementById(movieID).remove();
     };
 }
 
 function isNominated(movieID){
-
-    let index = nomList.indexOf(movieID);
-    
-    if(index < 0){
+    if(nomList[movieID] === undefined){
         return false;
     }
     else{

@@ -23,11 +23,13 @@ $(document).ready(function() {
 
         $('#searchResults').html("");
 
-        if(movieAttr.substring(0, 2) == "tt"){
-            searchMovieByID(movieAttr);  
-        }
-        else{
-            searchMovieByTitle(movieAttr);   
+        if($('input[name="searchparam"]').val() !== ""){    
+            if(movieAttr.substring(0, 2) == "tt"){
+                searchMovieByID(movieAttr);  
+            }
+            else{
+                searchMovieByTitle(movieAttr);   
+            }
         }
         
     });

@@ -50,6 +50,19 @@ function displaySearchData(reqResults){
         else{
             addSearchResult(reqResults["Title"], reqResults["Year"], reqResults["imdbID"], 0);
         }
+        //pagination if there are more than 1 page
+        if(maxPages > 1){
+            let searchResCont = "";
+            if(pageNum > 1){
+                searchResCont = "<input id='prevBtn' type='button' value='Prev Page' onclick='prevPage()'></input>";
+            }
+            searchResCont += "<div id='pageDetails'>Page " + pageNum + " of " + maxPages + "</div>"
+            if(pageNum < maxPages){
+                searchResCont += "<input id='nextBtn' type='button' value='Next Page' onclick='nextPage()'></input>";
+            }
+
+            $('#searchResults').append(searchResCont);
+        }
     }
     else if(reqResults["Response"] == "False"){
         console.log(reqResults["Error"]);
@@ -76,28 +89,15 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
 
         $('#searchResults').append(searchResCont);
 
-        document.getElementById("nominateBtn" + imdbID).onclick = function(m, movieID=imdbID){
+        $("#nominateBtn" + imdbID).onclick = function(m, movieID=imdbID){
             if(Object.keys(nomList).length >= 5){
                 alert("Max of 5 Nominations!");
             }
             else{
                 addNomination(movieID);
-                document.getElementById("nominateBtn" + movieID).remove();
+                $("#nominateBtn" + movieID).remove();
             }
         };
-    }
-
-    //pagination if there are more than 1 page
-    if(maxPages > 1){
-        if(pageNum > 1){
-            searchResCont = "<input id='prevBtn' type='button' value='Prev Page'></input>";
-        }
-        searchResCont += "<span id='pageNum'>Page " + pageNum + " of " + maxPages + "</span>"
-        if(pageNum < maxPages){
-            searchResCont += "<input id='nextBtn' type='button' value='Next Page'></input>";
-        }
-
-        $('#searchResults').append(searchResCont);
     }
 }
 
@@ -137,10 +137,10 @@ function displayNominatedMovie(movieJSON){
 
     $('#nominationList').append(nomListcont);
 
-    document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
+    $("#denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         delete nomList[movieJSON["imdbID"]];
         setCookie(myCookie, nomList, 7);
-        document.getElementById(movieID).remove();
+        $("#"+movieID).remove();
     };
 }
 
@@ -176,7 +176,7 @@ function eraseCookie(name) {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-function nextPage(){
+function prevPage(){
     pageNum--;
     let movieTitle = $('input[name="searchparam"]').val();
 

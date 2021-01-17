@@ -17,7 +17,7 @@ $(document).ready(function() {
         nomList = {};
     }
     
-    $('#searchForm').submit(function(e){
+    $('#searchParam').onchange = function(){
         e.preventDefault();
         let arr = $('#searchForm').serializeArray();
         let movieAttr = arr[0].value;
@@ -31,5 +31,5 @@ $(document).ready(function() {
             searchMovieByTitle(movieAttr);   
         }
         
-    });
+    };
 });

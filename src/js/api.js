@@ -2,20 +2,44 @@ let apiKey = "ec136557";
 
 let request = new XMLHttpRequest();
 
-
-function apiRequest(reqParam){
+//Send APIRequest to retrieve movie data
+function apiRequest(reqParam, handleData){
     let requestURL = "https://www.omdbapi.com/" + reqParam + "&type=movie&apikey=" + apiKey;
-    request.open("GET", requestURL);
-    request.send();
-    request.onload = () =>{
-        console.log(request);
-        if(request.status === 200){
-            let reqJSON = JSON.parse(request.response);
-            console.log(reqJSON);
-            return reqJSON;
+
+    $.ajax({
+        type: "GET",
+        url: requestURL,
+        dataType: "json",
+        success: function (data) {
+            console.log("RESPONSE:");
+            console.log(request.response);
+
+            handleData(data);
+        },
+        fail: function(error) {
+            console.log(error); 
         }
-        else{
-            return "ERROR";
-        }
-    }
+    });
 } 
+
+//Search OMDB for movies by title
+function searchMovieByTitle(movieTitle){
+    apiRequest("?t=" + movieTitle, handleAPIData);
+}
+
+// handle data retrieved from OMDB DB and display movie title and name(API Request Callback)
+function handleAPIData(reqResults){
+    console.log("HANDLING DATA:");
+    console.log(reqResults);
+
+    if(reqResults["Response"] != "False"){
+        console.log(reqResults["Title"]);
+        console.log(reqResults["Year"]);
+    }
+    else if(reqResults["Response"] != "False"){
+        console.log(reqResults["Error"]);
+    }
+    else{
+        console.log("Error Getting Data");
+    }
+}

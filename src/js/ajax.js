@@ -1,12 +1,15 @@
 $(document).ready(function() {
     nomList = JSON.parse(getCookie(myCookie));
-    if(nomList !== undefined){
+    if(nomList !== undefined && nomList !== null){
         console.log(nomList);
 
         for(movie in nomList){
             displayNominatedMovie(nomList[movie]);
             console.log(nomList[movie]);
         }
+    }
+    else{
+        nomList = {};
     }
     
     $('#searchForm').submit(function(e){

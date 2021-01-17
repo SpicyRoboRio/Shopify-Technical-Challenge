@@ -66,7 +66,7 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
                                 <p id='movieTitle'>" + movieTitle + "</p>\
                                 <p id='movieYear'>" + movieYear + "</p>\
                                 <div  class='form-group'></div>\
-                                    <input class='nominateBtn" + num + "' type='button' value='Nominate'>\
+                                    <input id='nominateBtn" + num + "' type='button' value='Nominate'>\
                                 </div>\
                             </div>\
                         </form><br>";
@@ -92,7 +92,7 @@ function getNominatedMovie(reqResults){
 
     if(reqResults["Response"] != "False"){
         nomList.push(reqResults);
-        displayNominatedMovie();
+        displayNominatedMovie(reqResults);
     }
     else if(reqResults["Response"] == "False"){
         console.log(reqResults["Error"]);
@@ -104,22 +104,22 @@ function getNominatedMovie(reqResults){
     }
 }
 
-function displayNominatedMovie(movieID){
-    let nomListcont = "<div id='" + movieID + "' imdbID='" + movieID + "'>\
-                            <p id='movieTitle'>" + movieTitle + "</p>\
-                            <p id='movieYear'>" + movieYear + "</p>\
-                            <input id='denominateBtn" + movieID + "' type='button' value='Remove'>\
+function displayNominatedMovie(movieJSON){
+    let nomListcont = "<div id='" + movieJSON["imdbID"] + "'>\
+                            <p id='movieTitle'>" + movieJSON["Title"] + "</p>\
+                            <p id='movieYear'>" + movieJSON["Year"] + "</p>\
+                            <input id='denominateBtn" + movieJSON["imdbID"] + "' type='button' value='Remove'>\
                         </div>\
                         <br>";
 
     $('#nominationList').append(nomListcont);
 
-    document.getElementById("denominateBtn" + movieID).onclick = function(m, movieID=imdbID){
+    document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         for(i = 0; i < nomList.length; i++){ 
-            if(nomList[imdbID] === movieID){ 
-                arr.splice(i, 1); 
+            if(nomList[i] == movieID){ 
+                nomList.splice(i, 1); 
             }
         }
-        document.getElementById("denominateBtn" + movieID).remove();
+        document.getElementById(movieID).remove();
     };
 }

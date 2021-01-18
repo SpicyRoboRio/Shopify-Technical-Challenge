@@ -51,6 +51,9 @@ span{
 #nextBtn{
     float:right;  
 }
+#viewNomBtn{
+    float:right; 
+}
 #pagination{
     text-align: center;
 }
@@ -82,10 +85,21 @@ span{
     border-radius: 5px;
     border-width: 1px;
 }
+.poster{
+    max-height: 200px;
+}
 /*Very Specific Rules*/
 div#searchResults div, div#nominationList div{
     width: 100%;
     display:inline-block;
+    margin: 2px;
+    padding: 5px;
+    background-color: #dedede;
+}
+
+div#nominationDetails div{
+    width: 100%;
+    display:inline-flex;
     margin: 2px;
     padding: 5px;
     background-color: #dedede;

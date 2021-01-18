@@ -133,11 +133,16 @@ function getNominatedMovie(reqResults){
 }
 
 function displayNominatedMovie(movieJSON){
+    if(document.getElementById('viewNomBtn') !== null){
+        document.getElementById('viewNomBtn').remove();
+    }
+
     let nomListcont = "<div id='" + movieJSON["imdbID"] + "'>\
                             <span>" + movieJSON["Title"] + ",<i>(" + movieJSON["Year"] + ")</i></span>\
                             <input id='denominateBtn" + movieJSON["imdbID"] + "' class='float-right' type='button' value='Remove'>\
                         </div>";
-
+    
+    nomListcont += "<input type='button' id='viewNomBtn' name='viewNomBtn' value='View Nominations'>"
     $('#nominationList').append(nomListcont);
 
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
@@ -146,6 +151,10 @@ function displayNominatedMovie(movieJSON){
         if(document.getElementById(movieID) !== null){
             document.getElementById(movieID).remove();
         }
+    };
+
+    document.getElementById('viewNomBtn').onclick = function(m, movieID=movieJSON["imdbID"]){
+        location.href='/.nominations.html';
     };
 
     setCookie(myCookie, 7);
@@ -209,4 +218,65 @@ function nextPage(){
 
     $('#searchResults').html("");
     searchMovieByTitle(movieTitle);
+}
+
+
+//USed for nominations.html
+function displayNominations(){
+    let cookieVal = getCookie(myCookie);
+
+    let nominationParam = urlParams.get('nominations');
+
+    if(nominationParam !== null){
+        cookieVal = nominationParam;
+    }
+
+    if(cookieVal !== undefined && cookieVal !== null){
+        let cookieArr = cookieVal.split(",");
+        myCookieVal = cookieArr
+        console.log(cookieArr);
+
+        for(i = 0; i < cookieArr.length; i++){
+            apiRequest("?i=" + cookieArr[i], getMovieDetails);
+        }
+    }
+    
+}
+
+function getMovieDetails(reqResults){
+    console.log("HANDLING DATA:");
+    console.log(reqResults);
+
+    if(reqResults["Response"] != "False"){
+        nomList[reqResults["imdbID"]] = reqResults;
+        modifyNominationElement(reqResults);
+    }
+    else if(reqResults["Response"] == "False"){
+        console.log(reqResults["Error"]);
+        alert(reqResults["Error"]);
+    }
+    else{
+        console.log("Error Getting Data");
+        alert("Error Showing Nominations");
+    }
+}
+
+function modifyNominationElement(movieJSON){
+    let nomListcont = "<div id='" + movieJSON["imdbID"] + "'>\
+                            <img src='" + movieJSON["Poster"] + "' class='poster'></img>\
+                            <span><b>" + movieJSON["Title"] + "</b>,<i>(" + movieJSON["Year"] + ")</i></span>\
+                            <span>" + movieJSON["Plot"] + "</span>\
+                        </div>";
+
+    $('#nominationDetails').append(nomListcont);
+
+    document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
+        delete nomList[movieJSON["imdbID"]];
+        setCookie(myCookie, 7);
+        if(document.getElementById(movieID) !== null){
+            document.getElementById(movieID).remove();
+        }
+    };
+
+    setCookie(myCookie, 7);
 }

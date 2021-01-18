@@ -64,19 +64,10 @@ $(document).ready(function() {
     });
 
     $('#shareBtn').on("click", function(e){
-        let link = window.location.protocol + "//" + window.location.hostname + window.location.pathname + "?";
-        if(searchParam !== null){
-            searchParam = $('input[name="searchparam"]').val();
-            link += "search=" + searchParam;
-        }
-        if(nominationParam !== null){
-            pageParam = pageNum.toString();
-            link += "&page=" + pageParam;
-        }
-        if(nominationParam !== null){
-            nominationParam = getCookie(myCookie);
-            link += "&nominations=" + nominationParam;
-        }    
+        let searchParam = $('input[name="searchparam"]').val();
+        let pageParam = pageNum.toString();
+        let nominationParam = getCookie(myCookie);
+        let link = window.location.protocol + "//" + window.location.hostname + window.location.pathname + "?search=" + searchParam + "&page=" + pageParam + "&nominations=" + nominationParam;
         
         $('input[name="shareLink"]').val(link);
         let linkElem = document.getElementById("shareLink");

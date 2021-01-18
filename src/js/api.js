@@ -3,7 +3,7 @@ let apiKey = "ec136557";
 let request = new XMLHttpRequest();
 let nomList = {};
 let myCookie = "spicyroborio_nom_list";
-let myCookieVal = [];
+let myCookieVal = "";
 let pageNum = 1;
 let maxPages = 1;
 let resPerPage = 10; //max number of results shown on a search page (default = 10)
@@ -161,10 +161,10 @@ function isNominated(movieID){
 function setCookie(name,value,days) {
     let expires = "";
 
-    myCookieVal = [];
-    
+    myCookieVal = "";
+
     for(let nomination in nomList){
-        myCookieVal.push(nomination);
+        myCookieVal += nomination + ",";
     }
 
     if (days) {

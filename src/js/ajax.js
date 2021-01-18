@@ -1,9 +1,9 @@
 $(document).ready(function() {
     myCookieVal = getCookie(myCookie);
 
-    
 
     if(myCookieVal !== undefined && myCookieVal !== null){
+        let cookieArr = myCookieVal.split(",");
         console.log(myCookieVal);
 
         for(let val in myCookieVal){
@@ -12,7 +12,7 @@ $(document).ready(function() {
         }
     }
     else{
-        myCookieVal = [];
+        myCookieVal = "";
     }
 
     $('#searchParam').on("input", function(e){

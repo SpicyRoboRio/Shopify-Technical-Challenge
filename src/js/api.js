@@ -3,6 +3,7 @@ let apiKey = "ec136557";
 let request = new XMLHttpRequest();
 let nomList = {};
 let myCookie = "spicyroborio_nom_list";
+let myCookieVal = [];
 let pageNum = 1;
 let maxPages = 1;
 let resPerPage = 10; //max number of results shown on a search page (default = 10)
@@ -95,7 +96,9 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
             }
             else{
                 addNomination(movieID);
-                document.getElementById("nominateBtn" + imdbID).remove();
+                if(document.getElementById("nominateBtn" + imdbID) !== null){
+                    document.getElementById("nominateBtn" + imdbID).remove();
+                }
             }
         };
     }
@@ -117,7 +120,7 @@ function getNominatedMovie(reqResults){
     if(reqResults["Response"] != "False"){
         nomList[reqResults["imdbID"]] = reqResults;
         displayNominatedMovie(reqResults);
-        setCookie(myCookie, nomList, 7);
+        setCookie(myCookie, myCookieVal, 7);
     }
     else if(reqResults["Response"] == "False"){
         console.log(reqResults["Error"]);
@@ -140,7 +143,9 @@ function displayNominatedMovie(movieJSON){
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         delete nomList[movieJSON["imdbID"]];
         setCookie(myCookie, nomList, 7);
-        document.getElementById(movieID).remove();
+        if(document.getElementById(movieID) !== null){
+            document.getElementById(movieID).remove();
+        }
     };
 }
 
@@ -154,7 +159,12 @@ function isNominated(movieID){
 }
 
 function setCookie(name,value,days) {
-    var expires = "";
+    let expires = "";
+
+    for(let nomination in nomList){
+        myCookieVal.push(nomination);
+    }
+
     if (days) {
         var date = new Date();
         date.setTime(date.getTime() + (days*24*60*60*1000));
@@ -163,8 +173,8 @@ function setCookie(name,value,days) {
     document.cookie = name + "=" + JSON.stringify(value)  + expires + "; path=/";
 }
 function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
         var c = ca[i];
         while (c.charAt(0)==' ') c = c.substring(1,c.length);

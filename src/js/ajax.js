@@ -1,11 +1,12 @@
 $(document).ready(function() {
-    nomList = JSON.parse(getCookie(myCookie));
-    
-    setInterval(function() {
-        setCookie(myCookie, nomList, 7);
-    }, 100);
+    //nomList = JSON.parse(getCookie(myCookie));
+    myCookieVal = getCookie(myCookie);
 
-    if(nomList !== undefined && nomList !== null){
+    for(let val in myCookieVal){
+        addNomination(val);
+    }
+
+    /*if(nomList !== undefined && nomList !== null){
         console.log(nomList);
 
         for(movie in nomList){
@@ -15,7 +16,7 @@ $(document).ready(function() {
     }
     else{
         nomList = {};
-    }
+    }*/
 
     $('#searchParam').on("input", function(e){
         let movieAttr = $('input[name="searchparam"]').val();

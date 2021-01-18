@@ -13,14 +13,6 @@ body {
     line-height: 2;
     background-color: #FFFFFF;
 }
-a:link:hover {
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    text-decoration: underline;
-    cursor: pointer;
-    cursor: hand;
-}
 input[type=button], button {
     cursor: pointer;
     cursor: hand;

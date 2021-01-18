@@ -161,6 +161,8 @@ function isNominated(movieID){
 function setCookie(name,value,days) {
     let expires = "";
 
+    myCookieVal = [];
+    
     for(let nomination in nomList){
         myCookieVal.push(nomination);
     }

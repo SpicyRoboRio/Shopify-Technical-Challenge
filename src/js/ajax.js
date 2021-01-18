@@ -1,7 +1,5 @@
 $(document).ready(function() {
     let cookieVal = getCookie(myCookie);
-    cookieVal = cookieVal.replace(/\"/g, '');
-
 
     if(cookieVal !== undefined && cookieVal !== null){
         let cookieArr = cookieVal.split(",");
@@ -13,7 +11,7 @@ $(document).ready(function() {
             console.log(cookieArr[i]);
         }
     }
-    
+
     $('#searchParam').on("input", function(e){
         let movieAttr = $('input[name="searchparam"]').val();
         console.log(movieAttr);

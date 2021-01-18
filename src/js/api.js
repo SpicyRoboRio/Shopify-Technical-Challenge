@@ -120,7 +120,6 @@ function getNominatedMovie(reqResults){
     if(reqResults["Response"] != "False"){
         nomList[reqResults["imdbID"]] = reqResults;
         displayNominatedMovie(reqResults);
-        setCookie(myCookie, myCookieVal, 7);
     }
     else if(reqResults["Response"] == "False"){
         console.log(reqResults["Error"]);
@@ -142,11 +141,13 @@ function displayNominatedMovie(movieJSON){
 
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         delete nomList[movieJSON["imdbID"]];
-        setCookie(myCookie, myCookieVal, 7);
+        setCookie(myCookie, 7);
         if(document.getElementById(movieID) !== null){
             document.getElementById(movieID).remove();
         }
     };
+
+    setCookie(myCookie, 7);
 }
 
 function isNominated(movieID){
@@ -158,7 +159,7 @@ function isNominated(movieID){
     }
 }
 
-function setCookie(name,value,days) {
+function setCookie(name,days) {
     let expires = "";
 
     myCookieVal = "";
@@ -177,7 +178,7 @@ function setCookie(name,value,days) {
         date.setTime(date.getTime() + (days*24*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + JSON.stringify(value)  + expires + "; path=/";
+    document.cookie = name + "=" + myCookieVal  + expires + "; path=/";
 }
 function getCookie(name) {
     let nameEQ = name + "=";

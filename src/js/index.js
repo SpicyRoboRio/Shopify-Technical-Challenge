@@ -151,6 +151,9 @@ function displayNominatedMovie(movieJSON){
         if(document.getElementById(movieID) !== null){
             document.getElementById(movieID).remove();
         }
+        if(Object.keys(nomList).length == 0 && document.getElementById('viewNomBtn') !== null){
+            document.getElementById('viewNomBtn').remove();
+        }
     };
 
     document.getElementById('viewNomBtn').onclick = function(m, movieID=movieJSON["imdbID"]){

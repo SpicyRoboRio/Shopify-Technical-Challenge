@@ -1,6 +1,31 @@
 $(document).ready(function() {
     let cookieVal = getCookie(myCookie);
 
+    let searchParam = urlParams.get('search');
+    let nominationParam = urlParams.get('nominations');
+
+    
+    if(searchParam !== null){
+        console.log(searchParam);
+        $('input[name="searchparam"]').val(searchParam);
+
+        $('#searchResults').html("");
+        pageNum = 1;
+
+        if($('input[name="searchparam"]').val() !== ""){    
+            if(searchParam.substring(0, 2) == "tt"){
+                searchMovieByID(searchParam);  
+            }
+            else{
+                searchMovieByTitle(searchParam);   
+            }
+        }
+    }
+    
+    if(nominationParam !== null){
+        console.log(nominationParam);
+    }
+
     if(cookieVal !== undefined && cookieVal !== null){
         let cookieArr = cookieVal.split(",");
 

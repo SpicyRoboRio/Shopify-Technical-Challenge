@@ -1,12 +1,13 @@
-let apiKey = "8d1cfd0a";
+const apiKey = "8d1cfd0a";
+const request = new XMLHttpRequest();
+const urlParams = new URLSearchParams(window.location.search);
+const resPerPage = 10; //max number of results shown on a search page (default = 10)
 
-let request = new XMLHttpRequest();
 let nomList = {};
 let myCookie = "spicyroborio_nom_list";
 let myCookieVal = "";
 let pageNum = 1;
 let maxPages = 1;
-let resPerPage = 10; //max number of results shown on a search page (default = 10)
 
 //Send APIRequest to retrieve movie data
 function apiRequest(reqParam, handleData){

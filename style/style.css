@@ -67,6 +67,9 @@ span{
     text-align: center;
     margin: 10px;
 }
+#shareBtn{
+    float:right;  
+}
 #headerText{
     -webkit-text-stroke: 2px #4b4439;
     color:#6d6d6d;

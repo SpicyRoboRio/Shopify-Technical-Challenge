@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    myCookieVal = getCookie(myCookie);
-    myCookieVal = myCookieVal.replace(/\"/g, '');
+    let cookieVal = getCookie(myCookie);
+    cookieVal = cookieVal.replace(/\"/g, '');
 
 
-    if(myCookieVal !== undefined && myCookieVal !== null){
-        let cookieArr = myCookieVal.split(",");
+    if(cookieVal !== undefined && cookieVal !== null){
+        let cookieArr = cookieVal.split(",");
 
         console.log(cookieArr);
 
@@ -13,10 +13,7 @@ $(document).ready(function() {
             console.log(cookieArr[i]);
         }
     }
-    else{
-        myCookieVal = "";
-    }
-
+    
     $('#searchParam').on("input", function(e){
         let movieAttr = $('input[name="searchparam"]').val();
         console.log(movieAttr);

@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     
 
-    if(nomList !== undefined && nomList !== null){
+    if(myCookieVal !== undefined && myCookieVal !== null){
         console.log(myCookieVal);
 
         for(let val in myCookieVal){

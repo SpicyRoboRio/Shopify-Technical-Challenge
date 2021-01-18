@@ -1,13 +1,15 @@
 $(document).ready(function() {
     myCookieVal = getCookie(myCookie);
+    myCookieVal = myCookieVal.replace(/\"/g, '');
 
 
     if(myCookieVal !== undefined && myCookieVal !== null){
         let cookieArr = myCookieVal.split(",");
+
         console.log(cookieArr);
 
         for(i = 0; i < cookieArr.length; i++){
-            //addNomination(cookieArr[i]);
+            apiRequest("?i=" + cookieArr[i], getNominatedMovie);
             console.log(cookieArr[i]);
         }
     }

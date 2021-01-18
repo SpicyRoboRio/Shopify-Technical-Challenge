@@ -142,7 +142,7 @@ function displayNominatedMovie(movieJSON){
 
     document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         delete nomList[movieJSON["imdbID"]];
-        setCookie(myCookie, nomList, 7);
+        setCookie(myCookie, myCookieVal, 7);
         if(document.getElementById(movieID) !== null){
             document.getElementById(movieID).remove();
         }
@@ -164,7 +164,12 @@ function setCookie(name,value,days) {
     myCookieVal = "";
 
     for(let nomination in nomList){
-        myCookieVal += nomination + ",";
+        if(myCookieVal === ""){
+            myCookieVal += nomination;
+        }
+        else{
+            myCookieVal += "," + nomination;
+        }
     }
 
     if (days) {

@@ -210,20 +210,3 @@ function nextPage(){
     $('#searchResults').html("");
     searchMovieByTitle(movieTitle);
 }
-
-function shareLink(){
-    let searchParam = $('input[name="searchparam"]').val();
-    let pageParam = pageNum.toString();
-    let nominationParam = getCookie(myCookie);    
-        
-    let link = window.location.protocol + "//" + window.location.hostname + window.location.pathname + "?search=" + searchParam + "&page=" + pageParam + "&nominations=" + nominationParam;
-    $('input[name="shareLink"]').val(link);
-    let linkElem = document.getElementById("shareLink");
-
-    console.log(link);
-    linkElem.select();
-    linkElem.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-        
-    alert("Copied link to clipboard:");
-}

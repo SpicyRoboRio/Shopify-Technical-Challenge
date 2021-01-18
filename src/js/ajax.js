@@ -6,9 +6,9 @@ $(document).ready(function() {
         let cookieArr = myCookieVal.split(",");
         console.log(cookieArr);
 
-        for(let val in cookieArr){
-            //addNomination(val);
-            console.log(val);
+        for(i = 0; i < cookieArr.length; i++){
+            //addNomination(cookieArr[i]);
+            console.log(cookieArr[i]);
         }
     }
     else{

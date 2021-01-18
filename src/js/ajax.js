@@ -2,15 +2,22 @@ $(document).ready(function() {
     let cookieVal = getCookie(myCookie);
 
     let searchParam = urlParams.get('search');
+    let pageParam = urlParams.get('page');
     let nominationParam = urlParams.get('nominations');
 
     
     if(searchParam !== null){
-        console.log(searchParam);
+        if(pageParam !== null){
+            pageNum = parseInt(pageParam, 10);
+        }
+        else{
+            pageNum = 1; 
+        }
+
         $('input[name="searchparam"]').val(searchParam);
 
         $('#searchResults').html("");
-        pageNum = 1;
+        
 
         if($('input[name="searchparam"]').val() !== ""){    
             if(searchParam.substring(0, 2) == "tt"){
@@ -21,9 +28,10 @@ $(document).ready(function() {
             }
         }
     }
-    
+
     if(nominationParam !== null){
         console.log(nominationParam);
+        cookieVal = nominationParam;
     }
 
     if(cookieVal !== undefined && cookieVal !== null){

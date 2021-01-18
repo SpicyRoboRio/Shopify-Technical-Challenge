@@ -70,6 +70,8 @@ span{
 #headerText{
     -webkit-text-stroke: 2px #4b4439;
     color:#6d6d6d;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 60px;
 }
 /*Classes*/
 .mainDivs{

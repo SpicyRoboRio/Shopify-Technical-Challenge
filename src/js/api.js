@@ -52,15 +52,15 @@ function displaySearchData(reqResults){
         }
         //pagination if there are more than 1 page
         if(maxPages > 1){
-            let searchResCont = "";
+            let searchResCont = "<div id='pagination'>";
             if(pageNum > 1){
-                searchResCont = "<input id='prevBtn' type='button' value='Prev Page' onclick='prevPage()'></input>";
+                searchResCont += "<input id='prevBtn' type='button' value='Prev Page' onclick='prevPage()'></input>";
             }
-            searchResCont += "<div id='pageDetails'>Page " + pageNum + " of " + maxPages + "</div>"
+            searchResCont += "<i id='pageDetails'>Page " + pageNum + " of " + maxPages + "</i>"
             if(pageNum < maxPages){
                 searchResCont += "<input id='nextBtn' type='button' value='Next Page' onclick='nextPage()'></input>";
             }
-
+            searchResCont += "</div>";
             $('#searchResults').append(searchResCont);
         }
     }
@@ -84,18 +84,18 @@ function addSearchResult(movieTitle, movieYear, imdbID, num){
     else{
         let searchResCont = "<div id='movie" + imdbID + "' imdbID='" + imdbID + "'>\
                                 <span>" + movieTitle + ", <i>(" + movieYear + ")</i></span>\
-                                <input id='nominateBtn" + imdbID + "' type='button' value='Nominate'>\
+                                <input id='nominateBtn" + imdbID + "' class='float-right' type='button' value='Nominate'>\
                             </div>";
 
         $('#searchResults').append(searchResCont);
 
-        $("#nominateBtn" + imdbID).onclick = function(m, movieID=imdbID){
+        document.getElementById("nominateBtn" + imdbID).onclick = function(m, movieID=imdbID){
             if(Object.keys(nomList).length >= 5){
                 alert("Max of 5 Nominations!");
             }
             else{
                 addNomination(movieID);
-                $("#nominateBtn" + movieID).remove();
+                document.getElementById("nominateBtn" + imdbID).remove();
             }
         };
     }
@@ -132,15 +132,15 @@ function getNominatedMovie(reqResults){
 function displayNominatedMovie(movieJSON){
     let nomListcont = "<div id='" + movieJSON["imdbID"] + "'>\
                             <span>" + movieJSON["Title"] + ",<i>(" + movieJSON["Year"] + ")</i></span>\
-                            <input id='denominateBtn" + movieJSON["imdbID"] + "' type='button' value='Remove'>\
+                            <input id='denominateBtn" + movieJSON["imdbID"] + "' class='float-right' type='button' value='Remove'>\
                         </div>";
 
     $('#nominationList').append(nomListcont);
 
-    $("#denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
+    document.getElementById("denominateBtn" + movieJSON["imdbID"]).onclick = function(m, movieID=movieJSON["imdbID"]){
         delete nomList[movieJSON["imdbID"]];
         setCookie(myCookie, nomList, 7);
-        $("#"+movieID).remove();
+        document.getElementById(movieID).remove();
     };
 }
 

@@ -1,14 +1,43 @@
-body{
-    background-color: #ffffff;
+/*Default*/
+html {
+    width: 80%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    background-color: #FFFFFF;
 }
+body {
+    height: 100%;
+    min-height: 100%;
+    line-height: 2;
+    background-color: #FFFFFF;
+}
+a:link:hover {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: hand;
+}
+input[type=button], button {
+    cursor: pointer;
+    cursor: hand;
+    border-radius: 8px;
+    border-width: 1px;
+}
+/*IDs*/
 #searchbar{
-    text-align: center;
+    display: flex;
 }
 #searchResults { 
     float:left;  
+    max-width: 50%
 } 
 #nominationList{ 
-    float:right;  
+    float:right; 
+    max-width: 50% 
 } 
 span{
     padding: 10px;
@@ -16,17 +45,28 @@ span{
 #searchParam{
     width: 500px;
 }
-.mainDivs{
-    background-color: #d2d2d2;
-    padding: 5px;
-    margin: 20px;
-}
 #prevBtn{
     float:left;  
 }
 #nextBtn{
     float:right;  
 }
-#pageDetails{
+#pagination{
     text-align: center;
+}
+#searchParam{
+    flex: 1;
+}
+/*Classes*/
+.mainDivs{
+    background-color: #d2d2d2;
+    padding: 5px;
+}
+/*Very Specific Rules*/
+div#searchResults div, div#nominationList div{
+    margin: 5px;
+    padding: 5px;
+    background-color: #dedede;
+    border-radius: 5px;
+    border-width: 1px;
 }

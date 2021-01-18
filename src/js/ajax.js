@@ -4,9 +4,9 @@ $(document).ready(function() {
 
     if(myCookieVal !== undefined && myCookieVal !== null){
         let cookieArr = myCookieVal.split(",");
-        console.log(myCookieVal);
+        console.log(cookieArr);
 
-        for(let val in myCookieVal){
+        for(let val in cookieArr){
             //addNomination(val);
             console.log(val);
         }

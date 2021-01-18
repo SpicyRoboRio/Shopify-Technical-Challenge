@@ -154,7 +154,7 @@ function displayNominatedMovie(movieJSON){
     };
 
     document.getElementById('viewNomBtn').onclick = function(m, movieID=movieJSON["imdbID"]){
-        location.href='/.nominations.html';
+        location.href='./nominations.html';
     };
 
     setCookie(myCookie, 7);

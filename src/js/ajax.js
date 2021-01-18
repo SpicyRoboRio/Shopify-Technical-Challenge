@@ -63,7 +63,7 @@ $(document).ready(function() {
         
     });
 
-    $('#shareBtn').onclick = function (e){
+    $('#shareBtn').on("click", function(e){
         searchParam = $('input[name="searchparam"]').val();
         pageParam = pageNum.toString();
         nominationParam = getCookie(myCookie);    
@@ -76,5 +76,7 @@ $(document).ready(function() {
         linkElem.select();
         linkElem.setSelectionRange(0, 99999);
         document.execCommand("copy");
-    };
+        
+        alert("Copied the text: " + copyText.value);
+    });
 });

@@ -33,11 +33,11 @@ input[type=button], button {
 }
 #searchResults { 
     float:left;  
-    max-width: 50%
+    max-width: 49%;
 } 
 #nominationList{ 
     float:right; 
-    max-width: 50% 
+    max-width: 49%;
 } 
 span{
     padding: 10px;
@@ -58,6 +58,7 @@ span{
     flex: 1;
 }
 #header{
+    width: 100%;
     background-color: #199CFF;
     padding: 5px;
     border-style: solid;
@@ -66,9 +67,7 @@ span{
     border-width: 1px;
     text-align: center;
     margin: 10px;
-}
-#shareBtn{
-    float:right;  
+    display:inline-grid;
 }
 #headerText{
     -webkit-text-stroke: 2px #4b4439;
@@ -85,7 +84,9 @@ span{
 }
 /*Very Specific Rules*/
 div#searchResults div, div#nominationList div{
-    margin: 5px;
+    width: 100%;
+    display:inline-block;
+    margin: 2px;
     padding: 5px;
     background-color: #dedede;
 }
